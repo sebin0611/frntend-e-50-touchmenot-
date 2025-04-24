@@ -42,7 +42,7 @@ function Header() {
           PRODUCTS
         </Link>
 
-        <Link to="/ cart" className="btn btn-ghost text-50 text-center ">
+        <Link to="/cart" className="btn btn-ghost text-50 text-center ">
           CART
         </Link>
 
