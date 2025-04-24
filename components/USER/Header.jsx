@@ -32,13 +32,35 @@ function Header() {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
+        
+      <Link to="/" className="btn btn-ghost text-50 text-center ">
+          HOME
+        </Link>
+
+   
+        <Link to="/productpage" className="btn btn-ghost text-50 text-center ">
+          PRODUCTS
+        </Link>
+
+        <Link to="/ cart" className="btn btn-ghost text-50 text-center ">
+          CART
+        </Link>
+
+        <Link to="/login" className="btn btn-ghost text-50 text-center ">
+          LOGIN
+        </Link>
+
+        <Link to="/signup" className="btn btn-ghost text-50 text-center ">
+          SIGNUP
+        </Link>
+
+        <Link to="/" className="btn btn-ghost text-xl text-center ">
           TOUCH ME NOT
         </Link>
       </div>
 
       <DarkMode />
-
+     
       <div className="flex-none ml-4">
         {/* Cart Icon */}
         <div className="dropdown dropdown-end">
