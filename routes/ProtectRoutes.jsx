@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { axiosinstance } from "../Config/axiosinstance";
 
 function ProtectRoutes() {
-  const [isUserAuth, setIsUserAuth] = useState(null); // Initial state as null to handle loading state
+  const [isUserAuth, setIsUserAuth] = useState(false); // Initial state as null to handle loading state
   const navigate = useNavigate();
   console.log(isUserAuth,"==isuser")
 
