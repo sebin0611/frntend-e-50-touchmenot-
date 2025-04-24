@@ -6,23 +6,27 @@ function ProtectRoutes() {
   const [isUserAuth, setIsUserAuth] = useState(false); // Initial state as null to handle loading state
   const navigate = useNavigate();
   console.log(isUserAuth,"==isuser")
-
   useEffect(() => {
     const checkAuth = async () => {
       try {
-       let response= await axiosinstance.get("/user/checkuser"); // Calls your `/checkuser` route
-        console.log(response,"checkuser response")
-        if (response.status==200)
-        setIsUserAuth(true);
+        const response = await axiosinstance.get("/user/checkuser");
+        console.log(response, "checkuser response");
+  
+        if (response.status === 200) {
+          setIsUserAuth(true);
+        } else {
+          setIsUserAuth(false);
+          navigate("/login");
+        }
       } catch (error) {
         setIsUserAuth(false);
         navigate("/login");
       }
     };
-
+  
     checkAuth();
   }, [navigate]);
-
+  
   if (isUserAuth === null) {
     return <div className="text-center mt-10">Checking authentication...</div>;
   }
