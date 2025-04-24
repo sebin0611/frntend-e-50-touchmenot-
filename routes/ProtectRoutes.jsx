@@ -10,7 +10,9 @@ function ProtectRoutes() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axiosinstance.get("/user/checkuser"); // Calls your `/checkuser` route
+       let response= await axiosinstance.get("/user/checkuser"); // Calls your `/checkuser` route
+        console.log(response,"checkuser response")
+        if (response.status==200)
         setIsUserAuth(true);
       } catch (error) {
         setIsUserAuth(false);
