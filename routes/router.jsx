@@ -16,6 +16,10 @@ import Productdetails from "../pages/USERP/Productdetails.jsx";
 import ProtectRoutes from "../routes/ProtectRoutes.jsx";
 import Wishlist from "../pages/USERP/Wishlist.jsx";
 import Adminlist from "../pages/USERP/Adminlist.jsx";
+import AdminSignup from "../pages/USERP/Adminsignup.jsx";
+import AdminLogin from "../pages/USERP/adminlogin.jsx";
+import Dashboard from "../pages/USERP/Dashboard.jsx";
+import AdminProtectRoutes from "./AdminProtectRoutes.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +55,29 @@ export const router = createBrowserRouter([
         path: "productDetails/:id",
         element: <Productdetails />,
       },
+      
+      {
+        path: "adminlogin",
+        element: <AdminLogin />,
+      },
+      
+
+
+      {
+        element: <AdminProtectRoutes />,
+        children: [
+          {
+            path: "dashboardpage",
+            element: < Dashboard/>,
+          },
+          {
+            path: "adminsignup",
+            element: <AdminSignup />,
+          },
+          
+
+
+        ]},
       {
         element: <ProtectRoutes />,
         children: [

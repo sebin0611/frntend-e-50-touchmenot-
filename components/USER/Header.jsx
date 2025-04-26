@@ -42,9 +42,7 @@ function Header() {
           PRODUCTS
         </Link>
 
-        <Link to="/cart" className="btn btn-ghost text-50 text-center ">
-          CART
-        </Link>
+        
 
         <Link to="/login" className="btn btn-ghost text-50 text-center ">
           LOGIN
@@ -64,7 +62,8 @@ function Header() {
       <div className="flex-none ml-4">
         {/* Cart Icon */}
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+
+          <div tabIndex={0} role="button"  className="btn btn-ghost btn-circle">
             <div className="indicator">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -89,10 +88,10 @@ function Header() {
             className="card card-compact dropdown-content bg-base-100 z-10 mt-3 w-52 shadow"
           >
             <div className="card-body">
-              <span className="text-lg font-bold">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="text-lg font-bold"></span>
+              <span className="text-info">Subtotal: </span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <Link to="/cart" className ="btn btn-primary btn-block">View cart</Link> 
               </div>
             </div>
           </div>
@@ -114,15 +113,15 @@ function Header() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/profile" className="justify-between">
+              <Link to="/profile"  className=" font-extrabold  justify-between" style={{fontSize:14}}>
                 Profile
               </Link>
             </li>
             <li>
-              <a>Settings</a>
+              <a className=" font-extrabold  justify-between" style={{fontSize:14}}> Settings</a>
             </li>
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button className=" text-red-700 font-extrabold  justify-between" style={{fontSize:14}} onClick={handleLogout}>Logout</button>
               
             </li>
           </ul>
