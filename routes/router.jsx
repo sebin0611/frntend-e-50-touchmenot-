@@ -7,7 +7,7 @@ import Contact from "../pages/USERP/Contact.jsx";
 import Home from "../pages/USERP/Home.jsx";
 import Loginpage from "../pages/SHAREDP/Loginpage.jsx";
 import SignUp from "../pages/SHAREDP/Signuppage.jsx";
-import ProfilePage from "../pages/SHAREDP/profilepage.jsx";
+import ProfilePage from "../pages/USERP/Profile";
 import Profile from "../pages/USERP/Profile";
 import Payment from "../pages/USERP/Payment.jsx";
 import Cart from "../pages/USERP/Cart.jsx";
@@ -17,7 +17,8 @@ import ProtectRoutes from "../routes/ProtectRoutes.jsx";
 import Wishlist from "../pages/USERP/Wishlist.jsx";
 import Adminlist from "../pages/USERP/Adminlist.jsx";
 import AdminSignup from "../pages/USERP/Adminsignup.jsx";
-import AdminLogin from "../pages/USERP/adminlogin.jsx";
+import AdminLogin from "../pages/USERP/Adminlogin.jsx";
+
 import Dashboard from "../pages/USERP/Dashboard.jsx";
 import AdminProtectRoutes from "./AdminProtectRoutes.jsx";
 
