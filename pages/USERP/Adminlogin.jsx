@@ -13,7 +13,7 @@ function AdminLogin() {
         withCredentials: true,
       });
       alert(response.data.message || "Login successful!");
-      navigate("/admin/dashboardpage"); // update based on your route
+      navigate("/admin/dashboard"); // update based on your route
     } catch (error) {
         console.log(response.data,"dattaresponse")
       alert(error.response?.data?.message || "Login failed");
