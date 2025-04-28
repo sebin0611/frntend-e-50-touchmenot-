@@ -2,10 +2,48 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axiosinstance } from "../../Config/axiosinstance";
 
+// Move WishlistButton OUTSIDE
+const WishlistButton = () => {
+  const [liked, setLiked] = useState(false);
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
+  return (
+    <button
+      onClick={toggleLike}
+      className="btn py-6 border-none mx-2.5 mb-1.5 flex items-center gap-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill={liked ? "red" : "none"}
+        viewBox="0 0 24 24"
+        strokeWidth="2.5"
+        stroke="currentColor"
+        className="size-[1.2em]"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5
+             -1.935 0-3.597 1.126-4.312 2.733
+             -.715-1.607-2.377-2.733-4.313-2.733
+             C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12
+             9 12s9-4.78 9-12Z"
+        />
+      </svg>
+      WISHLIST
+    </button>
+  );
+};
+
 const ProductDetails = () => {
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
-console.log(productDetails,"prodetail")
+
+  console.log(productDetails, "prodetail");
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -32,9 +70,14 @@ console.log(productDetails,"prodetail")
         <p className="mb-6 text-lg leading-relaxed max-w-lg text-white/80">
           {productDetails.description}
         </p>
-        <button className="bg-white text-gray-900 font-semibold px-6 py-3 rounded-md shadow-md hover:bg-gray-100 transition">
-          Add to Cart
-        </button>
+
+        <div className="flex items-center gap-4">
+          <button className="bg-white text-gray-900 font-semibold px-6 py-3 rounded-md shadow-md hover:bg-gray-100 transition">
+            Add To Cart
+          </button>
+          {/* Use Wishlist Button here */}
+          <WishlistButton />
+        </div>
 
         {/* Extra Info */}
         <div className="mt-10 text-sm space-y-3 max-w-lg">
@@ -60,7 +103,7 @@ console.log(productDetails,"prodetail")
           className="max-w-md w-full object-contain z-10"
         />
 
-        {/* Thumbnail Options (Right side) */}
+        {/* Thumbnail Options */}
         {productDetails.images.length > 1 && (
           <div className="absolute right-10 top-20 space-y-4 hidden md:flex flex-col">
             {productDetails.images.map((src, i) => (
