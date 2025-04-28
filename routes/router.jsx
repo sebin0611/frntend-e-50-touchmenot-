@@ -15,11 +15,11 @@ import ProductPage from "../pages/USERP/Product.jsx";
 import Productdetails from "../pages/USERP/Productdetails.jsx";
 import ProtectRoutes from "../routes/ProtectRoutes.jsx";
 import Wishlist from "../pages/USERP/Wishlist.jsx";
-import Adminlist from "../pages/USERP/Adminlist.jsx";
-import AdminSignup from "../pages/USERP/Adminsignup.jsx";
-import AdminLogin from "../pages/USERP/Adminlogin.jsx";
+import Adminlist from "../pages/ADMINP/Adminlist.jsx";
+import AdminSignup from "../pages/ADMINP/Adminsignup.jsx";
+import AdminLogin from "../pages/ADMINP/Adminlogin.jsx";
 
-import Dashboard from "../pages/USERP/Dashboard.jsx";
+import Dashboard from "../pages/ADMINP/Dashboard.jsx";
 import AdminProtectRoutes from "./AdminProtectRoutes.jsx";
 
 export const router = createBrowserRouter([
