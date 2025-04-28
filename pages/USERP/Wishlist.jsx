@@ -10,7 +10,10 @@ const WishlistPage = () => {
     const fetchWishlist = async () => {
       try {
         const res = await axiosinstance.get("/wishlist");
-        setWishlist(res.data.data); // Adjust based on your API response structure
+        console.log(res.data.wishlist.products,"response  of  wishlist")
+
+
+        setWishlist(res.data.wishlist.products); // Adjust based on your API response structure
       } catch (err) {
         console.error("Failed to fetch wishlist:", err);
       } finally {
@@ -45,21 +48,22 @@ const WishlistPage = () => {
           {wishlist.map((product) => (
             <div
               key={product._id}
-              className="bg-white rounded-lg shadow hover:shadow-md transition overflow-hidden"
+              className="bg-white rounded-lg shadow hover:shadow-md transition-all overflow-hidden flex justify-between    "
             >
               <Link to={`/product/${product._id}`}>
                 <img
-                  src={product.images?.[0] || "/images/default-product.png"}
+                  src={product.productId.images?.[0] || "/images/default-product.png"}
                   alt={product.name}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-cover"e
                 />
-                <div className="p-4">
-                  <p className="text-sm text-gray-500 mb-1">{product.category}</p>
+             <div className="p-4 flex  justify-between">
+
+                  
                   <h3 className="text-lg font-semibold text-gray-800">
-                    {product.name}
+                    {product.productId.name}
                   </h3>
                   <p className="text-red-500 font-bold text-md mt-2">
-                    ₹{product.price?.toFixed(2)}
+                    ₹{product.productId.price?.toFixed(2)}
                   </p>
                   {product.sale && (
                     <span className="inline-block mt-2 text-xs font-bold text-white bg-red-500 px-2 py-1 rounded">
