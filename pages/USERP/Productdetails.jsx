@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axiosinstance } from "../../Config/axiosinstance";
+import { toast } from "react-toastify"; // Optional for nice feedback
+import "react-toastify/dist/ReactToastify.css";
 
-// Move WishlistButton OUTSIDE
-const WishlistButton = () => {
+// WishlistButton component
+const WishlistButton = ({ productId }) => {
   const [liked, setLiked] = useState(false);
 
-  const toggleLike = () => {
-    setLiked(!liked);
+  const toggleWishlist = async () => {
+    try {
+      const res = await axiosinstance.post(`/wishlist/${productId}`);
+      toast.success(res.data.message || "Added to wishlist!");
+      setLiked(true);
+    } catch (err) {
+      console.error("Wishlist error:", err);
+      toast.error(err.response?.data?.message || "Failed to add to wishlist");
+    }
   };
 
   return (
     <button
-      onClick={toggleLike}
+      onClick={toggleWishlist}
       className="btn py-6 border-none mx-2.5 mb-1.5 flex items-center gap-2"
     >
       <svg
@@ -33,7 +42,7 @@ const WishlistButton = () => {
              9 12s9-4.78 9-12Z"
         />
       </svg>
-      WISHLIST
+      {liked ? "WISHLISTED" : "WISHLIST"}
     </button>
   );
 };
@@ -41,8 +50,6 @@ const WishlistButton = () => {
 const ProductDetails = () => {
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
-
-  console.log(productDetails, "prodetail");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -57,16 +64,15 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  if (!productDetails) return <div className="text-center mt-10">Loading...</div>;
+  if (!productDetails)
+    return <div className="text-center mt-10 text-gray-700">Loading...</div>;
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#4b2d1f] to-[#f9f6f1] flex flex-col md:flex-row text-gray-900">
       {/* Left Info Section */}
       <div className="w-full md:w-1/2 px-10 py-12 text-white">
         <h2 className="text-3xl font-semibold mb-4">₹{productDetails.price}</h2>
-        <h1 className="text-4xl font-bold mb-6 leading-tight">
-          {productDetails.name}
-        </h1>
+        <h1 className="text-4xl font-bold mb-6 leading-tight">{productDetails.name}</h1>
         <p className="mb-6 text-lg leading-relaxed max-w-lg text-white/80">
           {productDetails.description}
         </p>
@@ -75,19 +81,17 @@ const ProductDetails = () => {
           <button className="bg-white text-gray-900 font-semibold px-6 py-3 rounded-md shadow-md hover:bg-gray-100 transition">
             Add To Cart
           </button>
-          {/* Use Wishlist Button here */}
-          <WishlistButton />
+          {/* Wishlist Button */}
+          <WishlistButton productId={productDetails._id} />
         </div>
 
         {/* Extra Info */}
         <div className="mt-10 text-sm space-y-3 max-w-lg">
           <p>
-            <span className="font-semibold">Category:</span>{" "}
-            {productDetails.category}
+            <span className="font-semibold">Category:</span> {productDetails.category}
           </p>
           <p>
-            <span className="font-semibold">Stock Available:</span>{" "}
-            {productDetails.stock}
+            <span className="font-semibold">Stock Available:</span> {productDetails.stock}
           </p>
           <p>
             <span className="font-semibold">Sold:</span> {productDetails.sold}
@@ -117,11 +121,9 @@ const ProductDetails = () => {
           </div>
         )}
 
-        {/* Related Product (Dummy Static for Now) */}
+        {/* Related Product (Static) */}
         <div className="absolute bottom-8 left-10 w-full max-w-md">
-          <p className="text-sm text-gray-600 font-semibold mb-1">
-            Product related
-          </p>
+          <p className="text-sm text-gray-600 font-semibold mb-1">Product related</p>
           <div className="flex items-center space-x-3 bg-white p-3 rounded-md shadow-md">
             <img
               src={productDetails.images[0]}
@@ -129,9 +131,7 @@ const ProductDetails = () => {
               className="w-16 h-16 object-cover rounded"
             />
             <div>
-              <p className="font-semibold text-gray-800">
-                {productDetails.name}
-              </p>
+              <p className="font-semibold text-gray-800">{productDetails.name}</p>
               <p className="text-yellow-500 text-sm">★★★★★</p>
             </div>
           </div>
